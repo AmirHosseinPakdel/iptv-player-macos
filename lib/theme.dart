@@ -32,13 +32,14 @@ class AppTheme {
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
-          minimumSize: const Size.fromHeight(46),
+          minimumSize: const Size(0, 44),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
       ),
+      focusColor: const Color(0x660A84FF),
       sliderTheme: SliderThemeData(
         trackHeight: 3,
-        thumbShape: RoundSliderThumbShape(enabledThumbRadius: 6),
+        thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
         overlayShape: SliderComponentShape.noOverlay,
       ),
     );

@@ -14,6 +14,9 @@ Glass-style interface inspired by recent macOS releases, light and dark mode, an
 - Playback through `media_kit` (libmpv): wide codec/container support, HLS and MPEG-TS
 - Automatic reconnect when a live stream drops
 - Fullscreen, volume, previous/next channel, auto-hiding glass controls
+- Programme guide (Xtream): what's on now with a progress bar in the channel list, now/next on the player, full upcoming list per channel
+- Hide or show the category and channel panels (buttons on the player, or Cmd+1 / Cmd+2)
+- Weak-internet mode: bigger buffer, lowest quality, patient retries
 - Saved accounts on this Mac
 - Languages: English, فارسی, Deutsch, 中文, Español, Français, العربية, Türkçe, Русский,
   Português, Italiano, हिन्दी (or follow the system language)

@@ -25,3 +25,6 @@ macos/Pods/
 *.m3u
 *.m3u8
 .env
+
+run.log
+*.log

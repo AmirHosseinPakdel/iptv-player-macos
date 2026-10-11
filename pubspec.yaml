@@ -12,8 +12,11 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   http: ^1.2.2
+  crypto: ^3.0.5
+  package_info_plus: ^8.0.2
   provider: ^6.1.2
   shared_preferences: ^2.3.2
+  file_picker: ^8.1.2
   media_kit: ^1.1.11
   media_kit_video: ^1.2.5
   media_kit_libs_video: ^1.0.5

@@ -158,6 +158,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                         const SizedBox(height: 18),
                         FilledButton(
+                          style: FilledButton.styleFrom(
+                              minimumSize: const Size.fromHeight(46)),
                           onPressed: loading ? null : _submit,
                           child: loading
                               ? Row(

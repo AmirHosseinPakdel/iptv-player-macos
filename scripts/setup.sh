@@ -15,6 +15,9 @@ flutter pub get
 for f in macos/Runner/DebugProfile.entitlements macos/Runner/Release.entitlements; do
   /usr/libexec/PlistBuddy -c "Add :com.apple.security.network.client bool true" "$f" 2>/dev/null \
     || /usr/libexec/PlistBuddy -c "Set :com.apple.security.network.client true" "$f"
+  /usr/libexec/PlistBuddy -c "Add :com.apple.security.files.user-selected.read-only bool true" "$f" 2>/dev/null || true
+  # Not sandboxed: required for the built-in self-updater (no app store).
+  /usr/libexec/PlistBuddy -c "Set :com.apple.security.app-sandbox false" "$f" 2>/dev/null || true
 done
 
 # Many IPTV servers only speak plain HTTP.

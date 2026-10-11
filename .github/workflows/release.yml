@@ -1,0 +1,36 @@
+name: Release
+
+# Push a tag like v0.1.1 and this builds the macOS app and publishes it.
+# The app checks this release page for updates (see docs/UPDATES.md).
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - name: Build (version number comes from the tag)
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          flutter build macos --release --build-name="$VERSION"
+      - name: Package
+        run: |
+          APP=build/macos/Build/Products/Release/iptv_app.app
+          ditto -c -k --keepParent "$APP" IPTV-macos.zip
+          shasum -a 256 IPTV-macos.zip | awk '{print $1}' > IPTV-macos.zip.sha256
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" IPTV-macos.zip IPTV-macos.zip.sha256 \
+            --title "$GITHUB_REF_NAME" --generate-notes

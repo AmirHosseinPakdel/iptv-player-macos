@@ -33,7 +33,7 @@ class Glass extends StatelessWidget {
               width: 0.8,
             ),
           ),
-          child: child,
+          child: Material(type: MaterialType.transparency, child: child),
         ),
       ),
     );
@@ -99,6 +99,44 @@ class _Orb extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+
+/// Draws a visible ring when anything inside has keyboard / remote focus.
+/// Needed for D-pad navigation (Android TV) where there is no mouse hover.
+class FocusRing extends StatefulWidget {
+  const FocusRing({super.key, required this.child, this.radius = 12});
+  final Widget child;
+  final double radius;
+
+  @override
+  State<FocusRing> createState() => _FocusRingState();
+}
+
+class _FocusRingState extends State<FocusRing> {
+  bool _focused = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Focus(
+      canRequestFocus: false,
+      skipTraversal: true,
+      onFocusChange: (f) => setState(() => _focused = f),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 120),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(widget.radius + 2),
+          border: Border.all(
+            color: _focused
+                ? Theme.of(context).colorScheme.primary
+                : Colors.transparent,
+            width: 3,
+          ),
+        ),
+        child: widget.child,
       ),
     );
   }
